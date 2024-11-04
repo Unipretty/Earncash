@@ -1,0 +1,95 @@
+/* Basic styles for visibility and layout */
+body {
+    background-color: yellow; /* Yellow background */
+    font-family: Arial, sans-serif; /* Font family */
+    margin: 0;
+    padding: 20px;
+    color: black; /* Black text color */
+    font-weight: bold; /* Bold text */
+}
+
+.form-section, .dashboard {
+    display: none; /* Initially hide sections */
+}
+
+.active {
+    display: block; /* Show active section */
+}
+
+header {
+    display: flex; /* Flexbox layout for header */
+    justify-content: space-between; /* Space between logo and menu */
+    align-items: center; /* Center align items */
+}
+
+.dropdown-menu {
+    display: none; /* Hide dropdown by default */
+    position: absolute; /* Position dropdown absolutely */
+    background-color: purple; /* Purple background */
+    border: 1px solid #ccc; /* Border for dropdown */
+}
+
+.menu-icon {
+    cursor: pointer; /* Pointer cursor for menu icon */
+    font-size: 36px; /* Increased font size for visibility */
+    font-weight: bold; /* Bold text */
+    padding: 10px 15px; /* Added padding for a larger clickable area */
+    border: 2px solid black; /* Optional: add a border for emphasis */
+    border-radius: 5px; /* Slight rounding for aesthetics */
+}
+
+.menu-icon:hover + .dropdown-menu {
+    display: block; /* Show dropdown on hover */
+}
+
+.dropdown-menu a {
+    color: white; /* White text for dropdown links */
+    padding: 10px; /* Padding for dropdown items */
+    display: block; /* Block display for full-width links */
+    text-decoration: none; /* Remove underline */
+}
+
+.dropdown-menu a:hover {
+    background-color: darkviolet; /* Darker shade on hover */
+}
+
+button {
+    background-color: purple; /* Purple background for buttons */
+    color: white; /* White text for buttons */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Padding for buttons */
+    cursor: pointer; /* Pointer cursor for buttons */
+    font-weight: bold; /* Bold text for buttons */
+    border-radius: 5px; /* Slight rounding for buttons */
+}
+
+button:hover {
+    background-color: darkviolet; /* Darker shade on hover for buttons */
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select {
+    width: 100%; /* Full width for input fields */
+    padding: 10px; /* Padding for input fields */
+    margin-bottom: 10px; /* Margin below input fields */
+    border: 1px solid #ccc; /* Border for input fields */
+    border-radius: 5px; /* Slight rounding for input fields */
+}
+
+.whatsapp-icon {
+    width: 50px; /* Width for WhatsApp icon */
+    height: 50px; /* Height for WhatsApp icon */
+    border-radius: 50%; /* Makes the WhatsApp icon round */
+    font-weight: bold; /* Bold icon */
+}
+
+/* Optional styles for specific elements */
+img {
+    border-radius: 50%; /* Round the WhatsApp icon */
+}
+
+/* Purple logo styling */
+.purple-logo {
+    color: purple; /* Set logo text color to purple */
+    font-size: 36px; /* Adjust size as needed */
+    font-weight: bold; /* Make it bold */
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css"> <!-- Ensure this path is correct -->
+    <title>Earncash</title>
+    <style>
+        /* Basic styles for visibility and layout */
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .form-section, .dashboard { display: none; }
+        .active { display: block; }
+        header { display: flex; justify-content: space-between; align-items: center; }
+        .dropdown-menu { display: none; position: absolute; background-color: purple; border: 1px solid #ccc; }
+        .menu-icon:hover + .dropdown-menu { display: block; }
+        .menu-icon { cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Earncash</h1>
+        
+
+        <div id="registration" class="form-section active">
+            <h2>Register</h2>
+            <form id="register-form">
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
+            <p>Already have an account? <a href="javascript:void(0);" id="to-login">Login here</a></p>
+        </div>
+
+        <div id="login" class="form-section">
+            <h2>Login</h2>
+            <form id="login-form">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="javascript:void(0);" id="to-register">Register here</a></p>
+            <p><a href="javascript:void(0);" id="forgot-password-link">Forgot Password?</a></p>
+        </div>
+
+        <div id="forgot-password" class="form-section">
+            <h2>Forgot Password</h2>
+            <form id="forgot-password-form">
+                <input type="email" placeholder="Email" required>
+                <button type="submit">Reset Password</button>
+            </form>
+            <p><a href="javascript:void(0);" id="back-to-login">Back to Login</a></p>
+        </div>
+
+        <div id="main" class="dashboard">
+            <header>
+                <div class="logo">Earncash</div>
+                <div class="user-menu">
+                    <div class="menu-icon" onclick="toggleMenu()">≡</div>
+                    <div class="dropdown-menu" id="dropdown-menu">
+                        <a href="javascript:void(0);" id="profile-link">Profile</a>
+                        <a href="javascript:void(0);" id="earnings-link">Earnings</a>
+                        <a href="javascript:void(0);" id="referral-link">Referral</a>
+                        <a href="javascript:void(0);" id="withdrawal-link">Withdrawal</a>
+                        <a href="javascript:void(0);" id="customer-care-link">Customer Care</a>
+                        <a href="javascript:void(0);" id="about-us-link">About Us</a>
+                        <a href="javascript:void(0);" id="settings-link">Settings</a>
+                        <a href="javascript:void(0);" id="logout-button">Logout</a>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <h1>Welcome to your dashboard!</h1>
+                <div class="earnings">
+                    <h2>Your Earnings</h2>
+                    <p id="earnings-amount">$0.000</p>
+                </div>
+            </main>
+        </div>
+
+        <div id="profile" class="form-section">
+            <h2>Your Profile</h2>
+            <p><strong>Username:</strong> <span id="profile-username"></span></p>
+            <p><strong>Email:</strong> <span id="profile-email"></span></p>
+            <p><strong>Profile ID:</strong> <span id="profile-id"></span></p>
+            <button id="back-to-main-profile">Back to Main</button>
+        </div>
+
+        <div id="referral" class="form-section">
+            <p>Earn 5% on your referral earnings for life</p>
+            <h2>Your Referral Link</h2>
+            <input type="text" id="referral-link-input" readonly>
+            <button id="copy-referral">Copy Link</button>
+            <h3>Your Referrals</h3>
+            <ul id="referral-list"></ul>
+            <h3>Referral Earnings</h3>
+            <p id="referral-earnings">$0.00</p>
+            <button id="back-to-main-referral">Back to Main</button>
+        </div>
+
+        <div id="earnings-section" class="form-section">
+            <h2>Earn by Watching Videos</h2>
+            <button id="watch-video">Watch Video</button>
+            <p id="video-earnings">$0.000 earned from videos.</p>
+            <button id="back-to-main-earnings">Back to Main</button>
+        </div>
+
+        <div id="withdrawal" class="form-section">
+            <h2>Withdrawal</h2>
+            <p>Minimum withdrawal amount is $3.00</p>
+            <input type="number" id="withdrawal-amount" placeholder="Enter amount" min="3.00">
+            <select id="withdrawal-method">
+                <option value="TRX">TRX</option>
+                <option value="TON">TON</option>
+                <option value="LTC">LTC</option>
+            </select>
+            <input type="text" id="withdrawal-address" placeholder="Enter your address">
+            <button id="submit-withdrawal">Submit Withdrawal</button>
+            <p id="withdrawal-status" style="display:none;"></p>
+            <div class="withdrawal-history">
+                <h3>Withdrawal History</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="withdrawal-history-list">
+                        <!-- Withdrawal history items will be appended here -->
+                    </tbody>
+                </table>
+            </div>
+            <button id="back-to-main-withdrawal">Back to Main</button> <!-- Added Back to Main button -->
+        </div>
+
+        <div id="customer-care" class="form-section">
+            <h2>Contact Customer Care</h2>
+            <p>If you need assistance, please contact us via WhatsApp:</p>
+            <a href="https://wa.me/+2348084997064" target="_blank">
+                <img src="whatsapp-icon.png" alt=">>click Here to contact us>
+<<" style="width: 50px; height: 50px;">
+            </a>
+            <button id="back-to-main-customer-care">Back to Main</button>
+        </div>
+
+        <div id="settings" class="form-section">
+            <h2>Settings</h2>
+            <form id="settings-form">
+                <input type="email" placeholder="Email" required>
+                <input type="text" placeholder="Phone Number" required>
+                <input type="text" placeholder="Country" required>
+                <input type="text" placeholder="Postal Code" required>
+                <input type="text" placeholder="Home Address" required>
+                <button type="submit">Save Settings</button>
+            </form>
+            <button id="back-to-main-settings">Back to Main</button>
+        </div>
+
+        <div id="about-us" class="form-section">
+            <h2>About Us</h2>
+            <p>At EarnCash, we believe that earning money should be fun and accessible for everyone. Our platform offers a unique way for users to make cash by watching entertaining videos and referring friends. Join us today and discover how simple it is to earn cash while enjoying your favorite content!</p>
+            <button id="back-to-main-about">Back to Main</button>
+        </div>
+    </div>
+
+    <script src="js/scripts.js"></script> <!-- Ensure this path is correct -->
+</body>
+</html>
